@@ -192,6 +192,11 @@ public class TorcHelper {
       List<byte[]> serEnts = new ArrayList<>(2 * mapValue.size());
       int totalBytes = 0;
       for (Map.Entry e : (Set<Map.Entry>)mapValue.entrySet()) {
+        // Skipping null keys - Arun
+        if(e.getKey() == null) {
+          continue;
+        }
+
         byte[] serKey = serializeObject(e.getKey());
         byte[] serVal = serializeObject(e.getValue());
         serEnts.add(serKey);
